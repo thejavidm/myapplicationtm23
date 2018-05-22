@@ -16,6 +16,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import org.parceler.Parcels;
 
 import mx.uabcs.idecasso.myapplicationtm.R;
+import mx.uabcs.idecasso.myapplicationtm.database.ContactDBH;
 import mx.uabcs.idecasso.myapplicationtm.databinding.ActivityContactBinding;
 import mx.uabcs.idecasso.myapplicationtm.models.Contact;
 import mx.uabcs.idecasso.myapplicationtm.models.Phone;
@@ -56,6 +57,7 @@ public class ContactActivity extends AppCompatActivity {
         Contact contact = Parcels.unwrap(getIntent().getParcelableExtra(CONTACT_DATA));
         if(contact != null) {
             mContact = contact;
+            binding.contactName.setText(mContact.getName());
         }else{
             mContact = new Contact();
         }
@@ -121,6 +123,7 @@ public class ContactActivity extends AppCompatActivity {
 
                             if (!input.toString().equals(EMPTY_STRING)) {
                                 phone.setNumber(input.toString());
+                                ContactDBH.addOrUpdate(this, phone);
                                 adapter.add(phone);
                             }
                         })

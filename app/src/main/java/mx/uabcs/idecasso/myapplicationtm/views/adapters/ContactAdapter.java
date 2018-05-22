@@ -50,7 +50,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     public void onBindViewHolder(@NonNull ContactVH holder, int position) {
         Contact mContact = contacts.get(position);
         holder.contact = mContact;
-        Context context = holder.itemView.getContext();
         String name = "";
         String lastName = "";
         if(mContact.getName()!=null) {
@@ -60,10 +59,12 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             lastName = mContact.getLastname();
         }
         holder.name.setText(name + lastName);
+        if (!mContact.getPhones().isEmpty()) {
+            holder.number.setText(mContact.getPhones().get(0).getNumber());
+        }
         holder.cardView.setOnClickListener(view -> {
             Intent contact = new Intent(view.getContext(), ContactActivity.class);
             contact.putExtra(CONTACT_DATA, Parcels.wrap(mContact));
-            //view.getContext().startActivity(contact);
             ((Activity) view.getContext()).startActivityForResult(contact, EDIT_CONTACT);
         });
         holder.deleteIcon.setOnClickListener(view -> {
