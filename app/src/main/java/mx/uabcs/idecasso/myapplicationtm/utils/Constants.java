@@ -3,6 +3,7 @@ package mx.uabcs.idecasso.myapplicationtm.utils;
 public interface Constants {
     //region Ints
     int NEW_CONTACT = 1;
+    int EDIT_CONTACT = 2;
     //endregion
 
     //region Strings
