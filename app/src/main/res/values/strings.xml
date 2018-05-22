@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">My Application TM</string>
+    <string name="about">About app</string>
+    <string name="url" translatable="false">http://%1$s</string>
+    <string name="contact_name">Input contact name</string>
+    <string name="developer">Arturo De Casso</string>
+    <string name="developer_subtitle">Teacher and developer in UABCS</string>
+    <string name="developer_username">idecasso</string>
+    <string name="developer_gplus_username">+ArturoDeCasso</string>
+    <string name="google_play_link">8002078663318221363</string>
+    <string name="developer_email">decasso@uabcs.mx</string>
+    <string name="web_uabcs">http://www.uabcs.mx</string>
+</resources>
