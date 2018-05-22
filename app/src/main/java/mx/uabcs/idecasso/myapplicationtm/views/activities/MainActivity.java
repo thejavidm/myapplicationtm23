@@ -83,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
     }
     private void initRecyclerView() {
         adapter = new ContactAdapter(contacts);
-        binding.myrecview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        binding.myrecview.setItemAnimator(new DefaultItemAnimator());
-        binding.myrecview.setAdapter(adapter);
+        binding.contactsRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        binding.contactsRecycler.setItemAnimator(new DefaultItemAnimator());
+        binding.contactsRecycler.setAdapter(adapter);
     }
 
     private void initOnClicks() {
