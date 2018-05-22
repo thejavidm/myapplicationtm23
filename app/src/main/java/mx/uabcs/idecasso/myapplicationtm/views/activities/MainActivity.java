@@ -36,6 +36,7 @@ import mx.uabcs.idecasso.myapplicationtm.views.adapters.ContactAdapter;
 import mx.uabcs.idecasso.myapplicationtm.views.adapters.PhoneAdapter;
 
 import static mx.uabcs.idecasso.myapplicationtm.utils.Constants.CONTACT_DATA;
+import static mx.uabcs.idecasso.myapplicationtm.utils.Constants.EDIT_CONTACT;
 import static mx.uabcs.idecasso.myapplicationtm.utils.Constants.NEW_CONTACT;
 
 public class MainActivity extends AppCompatActivity {
@@ -122,12 +123,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == Activity.RESULT_OK){
-            if(requestCode == NEW_CONTACT){
+            if(requestCode == NEW_CONTACT||requestCode == EDIT_CONTACT){
                 Contact contact = Parcels.unwrap(data.getParcelableExtra(CONTACT_DATA));
                 Snackbar.make(binding.fab, "Contact: " + contact.getName(), Snackbar.LENGTH_LONG)
                         .show();
-                contacts.add(contact);
-                ContactDBH.addOrUpdate(this, contact);
+                ContactDBH.addOrUpdate(this,contact);
+                contacts.clear();
+                contacts.addAll(ContactDBH.getContacts(this));
+                adapter.notifyDataSetChanged();
             }
         }else if(resultCode == Activity.RESULT_CANCELED){
             Snackbar.make(binding.fab, "Action canceled by user", Snackbar.LENGTH_LONG)
@@ -135,9 +138,6 @@ public class MainActivity extends AppCompatActivity {
         }else{
             Snackbar.make(binding.fab, "Action unkown", Snackbar.LENGTH_LONG)
                     .show();
-        }
-        for(Contact contact: contacts){
-            Log.i("Contact", contact.getName());
         }
     }
     //endregion
